@@ -33,7 +33,6 @@ func initEcho() {
 		AllowMethods:     []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE, echo.OPTIONS},
 		AllowCredentials: true,
 	}))
-
 	e.HideBanner = true
 	e.Logger.SetLevel(log.Lvl(1))
 	// 定制 Validator, 基于validator.v9

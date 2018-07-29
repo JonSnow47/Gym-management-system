@@ -52,7 +52,7 @@ func (*groundHandler) Info(c echo.Context) error {
 	var (
 		err error
 		req struct {
-			Id int
+			Gid int `json:"gid" validate:"required"`
 		}
 	)
 
@@ -61,7 +61,7 @@ func (*groundHandler) Info(c echo.Context) error {
 		return c.JSON(http.StatusOK, Resp(common.ErrParam))
 	}
 
-	g, err := model.GymService.Info(req.Id)
+	g, err := model.GymService.Info(req.Gid)
 	if err != nil {
 		if err == mgo.ErrNotFound {
 			c.Logger().Error("[Info]", err)
@@ -91,7 +91,7 @@ func (*groundHandler) ModifyState(c echo.Context) error {
 	var (
 		err error
 		req struct {
-			Id int
+			Gid int `json:"gid" validate:"required"`
 		}
 	)
 
@@ -100,7 +100,7 @@ func (*groundHandler) ModifyState(c echo.Context) error {
 		return c.JSON(http.StatusOK, Resp(common.ErrParam))
 	}
 
-	err = model.GymService.State(req.Id)
+	err = model.GymService.State(req.Gid)
 	if err != nil {
 		if err == mgo.ErrNotFound {
 			return c.JSON(http.StatusOK, Resp(common.ErrNotFound))

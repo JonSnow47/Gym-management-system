@@ -28,8 +28,8 @@ func (*serviceProdive) Home(c echo.Context) error {
 func (*serviceProdive) In(c echo.Context) error {
 	var (
 		req struct {
-			Phone string
-			Gid   int
+			Phone string `json:"phone" validate:"required,len=11"`
+			Gid   int    `json:"gid" validate:"required"`
 		}
 		err error
 	)
@@ -88,6 +88,7 @@ func (*serviceProdive) Out(c echo.Context) (err error) {
 	var req struct {
 		Phone string `json:"phone" validate:"required,len=11"`
 	}
+
 	if err = c.Bind(&req); err != nil {
 		c.Logger().Error("[Bind]", err)
 		return c.JSON(http.StatusOK, Resp(common.ErrParam))

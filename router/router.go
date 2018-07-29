@@ -28,7 +28,7 @@ func Init(e *echo.Echo) {
 			account.GET("/list", handler.Account.List)
 			account.POST("/recharge", handler.Account.Recharge)
 		}
-		gym := api.Group("gym")
+		gym := api.Group("/gym")
 		{
 			gym.POST("/new", handler.Ground.New)
 			gym.POST("/info", handler.Ground.Info)
